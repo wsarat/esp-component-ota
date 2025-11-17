@@ -10,7 +10,7 @@
 
 static const char *TAG = "OTA Component";
 
-esp_err_t _http_event_handler(esp_http_client_event_t *evt)
+esp_err_t _ota_http_event_handler(esp_http_client_event_t *evt)
 {
     switch (evt->event_id) {
     case HTTP_EVENT_ERROR:
@@ -48,7 +48,7 @@ void ota_task_start(void *pvParameter)
     esp_http_client_config_t config = {
         .url = (char*)pvParameter,
         .crt_bundle_attach = esp_crt_bundle_attach,
-        .event_handler = _http_event_handler,
+        .event_handler = _ota_http_event_handler,
         .keep_alive_enable = true,
     };
 
