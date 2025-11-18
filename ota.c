@@ -98,7 +98,7 @@ void ota_wait_pin(int gpio_num, int timeout_ms, int pressed)
     while (xTaskGetTickCount() - start_time < timeout_ticks) {
         // Check if the button is pressed
         if (gpio_get_level(gpio_num) == pressed) {
-            ota_start("http://10.24.66.116:8000/ota.bin"); // Call OTA function if button is pressed
+            ota_start(CONFIG_OTA_FIRMWARE_UPGRADE_URL); // Call OTA function if button is pressed
             return; // Exit the function after starting OTA
         }
         // Small delay to avoid busy waiting
